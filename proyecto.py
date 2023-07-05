@@ -1746,6 +1746,14 @@ def t():
 print(t())
 
 
+# empezamos la nueva secion de funciones V justo en este espacio
+def tdf():
+    texto = "Una cadena"
+    num = 20
+    lista = [1,2,3]
+    return texto, num, lista
+print(tdf())
+
 
 
 
