@@ -1745,19 +1745,65 @@ def t():
     return texto, num, lista
 print(t())
 
+#podemos enviar evidentemente, podemos como argumentos variables
 
-# empezamos la nueva secion de funciones V justo en este espacio
-def tdf():
-    texto = "Una cadena"
-    num = 20
-    lista = [1,2,3]
-    return texto, num, lista
-print(tdf())
+def sumar(num1+num2):
+ suma= num1+num2
+ return suma
+num_a = 2# no hay problema que se llame igual pero tampoco es importante que se llamen asi
+num_b = 5
+resultado = sumar(num_a+num_b)
+print(resultado)#python si pueden concatenar texto si usamos esta funcion 
+# hay que hacer comprobasiones si estos parametros son numeros
 
 
+    
+''                             '''Llamada sin argumentos  '''
+'''
+Al llamar una funcion que tiene definidos unos parametros, si no pasamos los argumentos correctamente provocara un error:
+'''
 
+resultado = sumar()
+# muestra el error que dice
+# sumar() missing 2 required positional arguments: 'num1' and 'num2'
+# no encuentra valores para meterlo en la funcion
+'''Si yo le intento poner 3 parametros me dara tambien un error'''
 
+''                                        ''' Parametros por defecto'''
+'''
+Para solucionar el problema de que se realcien llamadas sin argumentos, podemos asignar unos valores por defecto nulos (o
+los valores por defecto que queramos) alos parametros, y de esa forma hacer una comprobacion antes de ejecutar el codigo de la funcion:
 
+'''
+
+def sumar (a=535, b = 5000):
+ if a == None or b == None:
+  print("Error, debes enviar dos numeros a la funcion "
+ 
+ else:
+   suma = a+b
+   return suma
+resutado = sumar(2) # de sta manera sumanos el valor de 3 como a y el b que en su valor original es 2000
+# para oider sumar el segundo valor que tenemos que en esta funcion lo hacemos de esta manera
+resultado = sumar(a=10,b=3)# intentemos siempre poner los nombre de los parametros
+resultado = sumar(b=3)
+resultado = sumar(a=3)
+resultado = sumar()
+print(resultado)
+ 
+# si tenemos um proyecto y no sabemos que poner ponemos None
+def x(temperatura = None):
+ if temperatura is None:
+  print ("No se ha dfinido la temperatura")
+ else:
+  print(temperatura,"C°")
+
+'''
+de esta manera controlamos el error gracias a mi valor por defecto
+1 hay que poner valor por defecto 
+2 cuando invoquemos siempre intentemos enviar la informacion hacerlo con sus parametros
+'''
+  
 
 ''                                 ''' Ejemplos que combinan condicionales y bucles '''
 
@@ -1935,53 +1981,6 @@ print(f,"es del tipo",type(f))
 
 
 #......................................................................................................................................................................
-
-
-""                                                "Bucle While "
-# el bucle while nos permite es usarlo cuando no sabemos las cantidades especifcas de cuantes veces se van a ejecutar 
-# en el caso del ejemplo de abajo es lograr ver que no sabiamos cuantas veces van a usarlo
-# tenemos una condicion que no conocemos
-
-import math 
-numero = int(input("  DIGITE UN NUMERO < "))
-while numero < 0:
-                # podemos ver que como no sabemos cuantas veces la persona se equivocara esntoces se ejecutara el codigo hasta que pueda dar la respuesta correcta
-                       
- print("ERROR tiene que ser un numero mayor a 0 y menos a 100")   
- numero = input(print("  DIGITE UN NUMERO < "))
- 
-  
-print(f"""  Felidades!!!!!  
-      
-      Su numero es {(math.sqrt(numero)):.2f}
-      
-      """) # math. sqrt nos permite es hacer un sacar la raiz cuadrada al numero permitiendo ser mas habiles con nuestro codigo y no escribir 
-                                                 #muchas veces
-                                    
-                                    
-aspecto = 0
-while aspecto == 0:
-    aspecto =  int(input("Inserte su contraseña "))
-    if aspecto == 0 or aspecto<0:
-       print("lo siento esa no es la contraseña")
-      
-else:
- print("I=m sorry")
-       
-
-#.........................................................................................................
-#                                   control de flujo
-''      'Bucle For'
-''' Se usa el bucle for para repetir una op mas intrucciones un determinado numero de veces'''
-# nos permita usarlo cuando sabemos cuantas veces se ejecutara el codigo
-# conocer el numero de veces nos permite 
-# recorrer estructuras que sabemos iterar sobre ella
-# en el caso de una lista[]
-numeros = [10,20,30,40,50,60,70,80,90,100]
-for indice, num in enumerate(numeros):
-      print("Valor:", num, "-> Posicion: ",indice )
-      numeros = [indice] = 10
-print(numeros)
 
 
 #.....................................................................................................................
