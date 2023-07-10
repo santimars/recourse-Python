@@ -1959,6 +1959,11 @@ f = float("10.3")
 print(f,"es del tipo",type(f))
 
 
+# termina justo aqui mi modulo 2
+adios = "Gracias ahora hare otra pagina para el modulo 3"
+cuidate = 'eso fue todo  amigos'
+print(adios,cuidate)
+
 
 
 
