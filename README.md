@@ -5,4 +5,5 @@ esta abierto para cualquier persona que quiera alguna parte esencial y tecnica d
 # Nota
 solamente son mis notas en linea de codigo recomiendo que si lo descarges no lo ejecutes que no sera la mejor opcion ya que alno conocer todo el codigo puede que te surgan problemas con los recourse python 
 #### Este no es como tal la clase completa del curso
-
+sino consisten en el modulo 1 y 2 de 6
+mas adelante comenzare a subir cada modulo.
