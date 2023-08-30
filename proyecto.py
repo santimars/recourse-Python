@@ -1,7 +1,7 @@
 #...................................................................................
  
 ""           """Empiezo otra vez ya que no se encontro practica.py""" 
-
+gracias = "gracias"
 
 # hay palabras reservadas en  python
 """and
