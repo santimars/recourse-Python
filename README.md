@@ -10,4 +10,3 @@ mas adelante comenzare a subir cada modulo.
 obii
 <iframe allowfullscreen width="795" height="690" frameborder="0" src="https://es.educaplay.com/juego/15525642-memoria_de_figuras_geometricas.html"></iframe>
 
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
