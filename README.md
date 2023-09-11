@@ -7,6 +7,6 @@ solamente son mis notas en linea de codigo recomiendo que si lo descarges no lo 
 #### Este no es como tal la clase completa del curso
 sino consisten en el modulo 1 y 2 de 6
 mas adelante comenzare a subir cada modulo.
-obii
+
 <iframe allowfullscreen width="795" height="690" frameborder="0" src="https://es.educaplay.com/juego/15525642-memoria_de_figuras_geometricas.html"></iframe>
 
