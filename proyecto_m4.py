@@ -63,7 +63,7 @@ c.c()
 
 ""                         """ HERENCIA MULTIPLE CON UN EJEMPLO"""
 
-class vehiculos():
+class vehiculos:
     #contructor
     def __init__(self,marca,modelo):
         self.marca = marca
