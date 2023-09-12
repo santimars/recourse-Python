@@ -143,6 +143,10 @@ class vehiculos:
 
     def repostar(self):
         print("repostanto combistible")
+    
+    def __str__(self):
+        return """- marca: {}
+                  - modelo: {}""".format(self.marca,self.modelo)
 
 class Vehiculos_Electricos:
     #contructor
@@ -154,20 +158,129 @@ class Vehiculos_Electricos:
         '''Metodo cargarEnergia de la clase Vehiculos Electricos. Indica al sistema si el Vehiculo Electrico esta cargado o no.'''
         self.cargando = True
         print("Cargando energia")
-
-class Bicicleta_Electrica(Vehiculos_Electricos,vehiculos):
-    '''Metodo Bicicleta Electrica que se hereda de la clase vehiculos y la clase vehiculos electricos, es decir, herencia multiple.'''
-    def __init__(self,marca=None,modelo=None,autonomia=None):
-        Vehiculos_Electricos.__ini__(self,autonomia) # Equivale a: super().__init__(autonomia)
-        vehiculos.__init__(self,marca,modelo)
-        print("Hemos creado un objeto de la clase Bicicleta Electrica")
         
     def __str__(self):
-        return vehiculos.__str__(self) + "\n" + Vehiculos_Electricos.__sr__(self)
+        return """- autonomia: {}""".format(self.autonomia)
+
+class Bicicleta_Electrica(Vehiculos_Electricos,vehiculos):
+    
+    '''Metodo Bicicleta Electrica que se hereda de la clase vehiculos y la clase vehiculos electricos, es decir, herencia multiple.'''
+    
+    def __init__(self, marca = None, modelo = None, autonomia =100):
+        Vehiculos_Electricos.__init__(self) # Equivale a: super().__init__(autonomia)
+        vehiculos.__init__(self, marca, modelo)
+        print("Hemos creado un objeto de la clase Bicicleta Electrica")
+        
+        
+    def __str__(self):
+        return vehiculos.__str__(self) + "\n" + Vehiculos_Electricos.__str__(self)
         # Equivale a:
         # return Vehiculos.__str__(self) + super().__str__()
         
 mibici = Bicicleta_Electrica(marca="ford",modelo="Xtreme",autonomia=80)
+print(mibici, end="\n\n")
+mibici2 = Bicicleta_Electrica(marca="ford",modelo="Xtreme")
+print(mibici2, end="\n\n")
+mibici3 = Bicicleta_Electrica(marca="ford",modelo="Casual",autonomia=100)
+print(mibici3, end="\n\n")
 
 # Si estamo usando herencia multiple procuremos en no usar super() ya que tenemos muchos padres y super()solo nos deja uno
-# es mejor acceder de otra manera    
+# es mejor acceder de otra manera    ]
+
+class Futbolista():
+    def __init__(self,altura,peso):
+        self.altura =altura
+        self.peso = peso
+        print("Creado futbolista")
+        
+class Nacionalidad():
+    def __init__(self,origen):
+        self.origen = origen
+        print("Nacionalidad creada")
+
+class Defensa(Futbolista,Nacionalidad):
+    """Este constructor tiene que recibir todos los parametros, los de Futbolistas y los de Nacionalidad"""
+    def __init__(self,altura, peso, origen):
+        #super().__init__(def_altura,def_peso)
+        Futbolista.__init__(self,altura, peso )
+        Nacionalidad.__init__(self,origen)#  el orden aqui no importa pero en herencia multinivel es un problema
+        print("Defensa creado")
+        """Ojo cuando usamos super(), super es un metodo de Python que hace referencia a la clase padre principal, por lo tanto,
+           como es un metodo lleva (), es decir, super().pero cuando accedemos a una clase, no tenemos que usar esos ()
+           Nacionalidad.__init__ es suficiente. Otro detalle es que super nos traslada self de manera automatica. pero
+           cuando invocamos a una clase manualmente, no, por lo tanto, tenemos que pasar self en el __init__"""
+    
+d1 = Defensa(altura="1.88",peso=78,origen="Colombia")
+print("Altura:",d1.altura)
+print("Nacionalidad:",d1.origen)
+
+
+''                                     '''Herencia Multinivel'''
+
+'''
+Ya hemos visto la herencia simple y la herencia multiple, ahora veremos la tercera opcion, la herencia multinivel
+podemos heredar de una clase derivada. Esto se llama ferencia multinivel. Puede ser de cualquier profundidad en Python.
+En la herencia multinivel, las caracteristicas de la clase base y la clase derivada se heredan en la nueva clase derivada.
+vamos a crear la siguiente estructura de clases:  "ABUELO -> PADRE -> HIJO"
+'''
+class Abuelo:
+    def __init__(self,nombreAbuelo=None):
+        self.__nombreAbuelo = nombreAbuelo
+        print("Abuelo creado")
+    
+    @property
+    def nombreAbuelo (self):
+        return self.__nombreAbuelo
+    @nombreAbuelo.setter
+    def nombreAbuelo(self,new):
+        self.__nombreAbuelo = new
+    
+    def LenguajeDelAbuelo(self):
+            print(self.nombreAbuelo, "Programa en Ensalblador")
+            
+    def __str__(self):
+        return "Nombre del Abuelo {}".format(self.nombre)
+    
+class Padre(Abuelo):
+    __nombre = None
+    
+    def __init__(self, nombreAbuelo=None,nombrePadre =None):
+        super().__init__(nombreAbuelo)
+        self.__nombre = nombrePadre
+    @property
+    def nombrePadre (self):
+     return self.__nombre
+  
+    @nombrePadre .setter
+    def nombrePadre (self,new):
+     self.__nombre = new
+     
+     
+    def __str__(self):
+        return super().__str__() + "\nNombre del Padre {}".format(self.nombre)
+
+class Hijo(Padre):
+    __nombre = None
+    
+    def __init__(self, nombrePadre=None,nombreHijo =None):
+        super().__init__(nombrePadre)
+        self.__nombre = nombreHijo
+    @property
+    def nombreHijo(self):
+     return self.__nombre
+  
+    @nombreHijo .setter
+    def nombreHijo (self,new):
+     self.__nombre = new
+     
+     
+    def __str__(self):
+        return super().__str__() + "\nNombre del Hijo {}".format(self.nombre)
+    
+if __name__ == "__main__":
+    #creamos un objeto de la clase Abuelo y probamos sus metodos
+    print("==ABUELO==")
+    abuelo = Abuelo("Fran")
+    print(abuelo.nombreAbuelo)
+# en python no hay programar mas caminos que los que hay solo debe ser 1
+# hay que dibujar el esquema de clases he ir dibujando las herencias y asi detectar que solo halla 1 camino
