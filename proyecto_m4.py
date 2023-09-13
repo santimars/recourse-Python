@@ -283,4 +283,4 @@ if __name__ == "__main__":
     abuelo = Abuelo("Fran")
     print(abuelo.nombreAbuelo)
 # en python no hay programar mas caminos que los que hay solo debe ser 1
-# hay que dibujar el esquema de clases he ir dibujando las herencias y asi detectar que solo halla 1 camino
+# hay que dibujar el esquema de clases he ir dibujando las herencias y asi detectar que solo halla 1 camino.
