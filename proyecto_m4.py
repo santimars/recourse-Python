@@ -14,7 +14,7 @@ hey muchos ejemplos en la vida real que es asi
 
 se le llama herencia multinivel si hay mas padres en las clases 
 un ejemplo esta personal universitario con oficina, profesor , alumno Y entre 
-profesor y alumno hay un hijo llamado profesor ayudante}
+profesor y alumno hay un hijo llamado profesor ayudante
 
 
 se recomienda no usar herencia multiple 
@@ -239,7 +239,7 @@ class Abuelo:
             print(self.nombreAbuelo, "Programa en Ensalblador")
             
     def __str__(self):
-        return "Nombre del Abuelo {}".format(self.nombre)
+        return "Nombre del Abuelo {}".format(self.nombreAbuelo)
     
 class Padre(Abuelo):
     __nombre = None
@@ -254,16 +254,18 @@ class Padre(Abuelo):
     @nombrePadre .setter
     def nombrePadre (self,new):
      self.__nombre = new
-     
+    
+    def LenguajeDelPadre(self):
+            print(self.nombrePadre, "Programa en C") 
      
     def __str__(self):
-        return super().__str__() + "\nNombre del Padre {}".format(self.nombre)
+        return super().__str__() + "\nNombre del Padre {}".format(self.nombrePadre)
 
 class Hijo(Padre):
     __nombre = None
     
-    def __init__(self, nombrePadre=None,nombreHijo =None):
-        super().__init__(nombrePadre)
+    def __init__(self,nombreAbuelo = None, nombrePadre=None,nombreHijo =None):
+        super().__init__(nombreAbuelo,nombrePadre)
         self.__nombre = nombreHijo
     @property
     def nombreHijo(self):
@@ -272,15 +274,83 @@ class Hijo(Padre):
     @nombreHijo .setter
     def nombreHijo (self,new):
      self.__nombre = new
-     
-     
+    
+    def LenguajeDelHijo(self):
+            print(self.nombreHijo, "Programa en Python")  
+    
     def __str__(self):
-        return super().__str__() + "\nNombre del Hijo {}".format(self.nombre)
+        return super().__str__() + "\nNombre del Hijo {}".format(self.nombreHijo)
     
 if __name__ == "__main__":
     #creamos un objeto de la clase Abuelo y probamos sus metodos
     print("==ABUELO==")
     abuelo = Abuelo("Fran")
-    print(abuelo.nombreAbuelo)
+    print(abuelo.nombreAbuelo) # metodo getter
+    abuelo.nombreAbuelo = "Francisco"
+    print(abuelo)# Metodo __str__
+    
+    # Creamos un objeto de la clase Padre u probamos sus metodos
+    print("\n==PADRE==")
+    padre = Padre("Carlos","Francisco")
+    print(padre)
+    
+    # Creamos un objeto de la clase hijo y probamos sus metodos
+    print("\n==HIJO==")
+    hijo = Hijo("Pablo","Carlos","Francisco")
+    print(hijo)
+    
 # en python no hay programar mas caminos que los que hay solo debe ser 1
+
 # hay que dibujar el esquema de clases he ir dibujando las herencias y asi detectar que solo halla 1 camino.
+
+# hay que dibujar el esquema de clases he ir dibujando las herencias y asi detectar que solo halla 1 camino
+
+    print("\n=== LENGUAJES DE PROGRAMACION===")
+    hijo.LenguajeDelHijo()# Metodo de la clase Hijo
+    hijo.LenguajeDelPadre()# Metodo de la clase Padre
+    hijo.LenguajeDelAbuelo()# Metodo de la clase Abuelo
+    
+    
+''                      '''MRO (Method Resolution Order)'''
+'''
+El MRO es el orden en el que python busca un metodo en una jerarquia de clases. Especialmente juega un papel 
+vital en el contexto de la herencia multiple, ya que se puede encontrar un metodo unico en multiples superclases.
+'''
+class Class1:
+    def m (self):
+        print("En Class 1")
+
+class Class2(Class1):
+    def m(self):
+        print("En Clase 2")
+        super().m()
+
+class Class3(Class1):
+    def m(self):
+        print("En Clase 3")
+        super().m()
+        
+class Class4(Class2,Class3):
+    def m(self):
+        print("En Class 4")
+        super().m()
+        
+obj = Class4()
+obj.m()
+
+'''
+Comprobamos que al crear un objeto de Class4 e invocar a su metodo m() se ejecuta:
+
+1. El metodo m() local de la propia clase Class4
+2. El metodo m() del padre principal de Class4: Class2
+3. El metodo m() del otro padre de Class4: Class3
+4. El metodo m() del padre de Class2 y Class3, es decir, el abuelo de Class4: Class1
+'''
+# Un truco es poder ver el orden que MRO esta asignado a nuestras clases directamente con el metodo mrc
+print(Class4.mro())
+# Vemos que le orden es Class4 -> Class3 -> Class2 -> Class1 Object (clase principal de Python de la )
+print("Orden:")
+for i in Class4.mro():
+    print(i)
+
+#asi conocemos la forma que en python entiende a donde vamos en el codigo.
