@@ -354,3 +354,145 @@ for i in Class4.mro():
     print(i)
 
 #asi conocemos la forma que en python entiende a donde vamos en el codigo.
+
+''                      ''' Preparemonos par el Polimorfismo. Ejemplo Productos'''
+'''
+es un pedazo de codigo que hace una tarea que cambia por la clase en el que este 
+hacer funciones de las cuales que traten hacer una funcion que acepte contipo de datos completamente diferentes y mi funcion
+se adapte crear una fucnion que resiva y la funcion que siga trabajando'''
+class Producto:
+    def __init__(self,referencia,nombre,pvp,descripcion):
+        self.referencia = referencia
+        self.nombre = nombre
+        self.pvp = pvp
+        self.descripcion = descripcion
+        
+    def __str__(self):
+        return """\
+            referencia\t{}
+            Nombre\t{}
+            Pvp\t{}
+            Descripcion\t{}
+            """.format(self.referencia,self.nombre,self.pvp,self.descripcion)
+    
+class Adorno(Producto):
+    pass
+
+class Alimento(Producto):
+    productor = ""
+    distribuidor = ""
+    
+    def __Str__(self):
+        return"""\
+            referencia\t{}
+            Nombre\t{}
+            Pvp\t{}
+            Descripcion\t{}
+            Productor\t{}
+            Distribuidor\t{}
+            """.format(self.referencia,self.nombre,self.pvp,self.descripcion,self.productor,self.distribuidor)
+            
+class Libro(Producto):
+    isbn = ""
+    autor = ""
+    
+    def __str__(self):
+        return"""\
+            referencia\t{}
+            Nombre\t{}
+            Pvp\t{}
+            Descripcion\t{}
+            Isbn\t{}
+            Autor\t{}
+            """.format(self.referencia,self.nombre,self.pvp,self.descripcion,self.isbn,self.autor)
+# creamos alfunos objetos
+ad = Adorno(2034,"Vaso adornado",15,"Vaso de porcelana adornado con arboles")
+
+al = Alimento(2035,"Botella de Aceite de Oliva",5,"250ML")
+al.productor = "La aceitera"
+al.distribuidor = "Distribuciones SA"
+
+li = Libro(2036,"Cocina Mediterranea",9,"Recetas sanas y buenas")
+li.autor = "Dona juana"
+li.isbn = "3-124655-78-4"
+  
+# lista de productos
+Producto = [ad,al,li]
+for p in Producto:
+    print(p) 
+
+''                              '''Poliformismo'''
+
+'''
+Se refiere a un propuedad de la herencia por la que objetos de distintas sub clases pueden responder a una misma accion
+'''
+def rebajar_producto(p,rebaja):
+    """rebaja un producto en porcentaje de su precio"""
+    print(type(p))
+    
+    p.pvp =  p.pvp - (p.pvp/100 * rebaja)
+
+print("ANTES DE LAS REBAJAS:",end="")
+print(li.pvp)
+rebajar_producto(li,10)
+print("DESPUES DE LAS REBAJAS:",end="")
+print(li.pvp)
+
+'''
+El metodo rebajar_producto() es capaz de tomar objeos de distintas subclases y manipular el atributo pvp
+la accion de manipular el pvp funcionara siempre que los objetos tengan ese atributo. pero en el caso de no ser asi, darla error.
+'''
+'''
+suelen ser funcionese en el main funciones que no tiene dueño, ya que va a trabajar con todas las clases
+para ello en el ejemplo pvp esta en todas las cosas eso nos hace ver que para que funciones esta funcion poliformica debe estar la variable
+que vamos a ejecutar en todas nuestras clases
+'''
+
+''              '''Poliformismo Ejemplo de vehiculos'''
+# es importante    que la funciones que este en mis clases se llamen igual obviamente claro porque comparte el mismo 
+class Coche():
+    def desplazamiento(self):
+        print("Me desplazo utilizando cuatro ruedas")
+        
+class Moto():
+    def desplazamiento(self):
+        print("Me desplazo utilizando dos ruedas")
+        
+class Camion():
+    def desplazamiento(self):
+        print("Me despazo utilizando seis ruedas")
+        
+# Prgrama principal, fuera de als clases
+
+print("USO NORMAL POLIFORMISMO")
+# cada objeto instanciado de cada una de las 3 clases accede a su metodo desplazamiento
+
+miVehiculo = Moto()
+miVehiculo.desplazamiento()
+
+miVehiculo2 = Coche()
+miVehiculo2.desplazamiento()
+
+miVehiculo3 = Camion()
+miVehiculo3.desplazamiento()
+
+# Ahora usemos el poliformismo. Vamos a crear un metodo que recibira por parametro un objeto del tipo vehiculo a
+
+def desplazamientoVehiculo(v):
+    print("Objeto resivido de tipo: ",type(v).__name__)
+    v.desplazamiento()
+
+print("\nUSO DE POLIFORMISMO")
+miVehiculo4 = Camion()
+desplazamientoVehiculo(miVehiculo4)
+miVehiculo5 = Moto()
+desplazamientoVehiculo(miVehiculo5)
+    
+lista = [miVehiculo,miVehiculo2,miVehiculo3,miVehiculo4,miVehiculo5]
+for i in lista:
+    desplazamientoVehiculo(i)
+
+#un metodo poliformico nos aporta cuanto tenemos muchos datos un ejemplo 3000 mil tipos de vehiculos
+'''
+si notamos que estamos hacieno un mismo codigo siempre habra una solucion mejor
+'''
