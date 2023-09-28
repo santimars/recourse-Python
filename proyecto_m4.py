@@ -496,3 +496,43 @@ for i in lista:
 '''
 si notamos que estamos hacieno un mismo codigo siempre habra una solucion mejor
 '''
+''                                  ''' METODOS APLICADOS'''
+
+# ALGORITMOS APLICADOS
+lista.sort()# sort nos ordena la lista 
+# los metodos que hay en python que pueden cambiar es su actualizaciones siempre estan en constante cambio 
+# en varias formas en el que aparece
+# antes de hacer algo preguntemonos si python ya lo tiene
+# esto ahorra mucho tiempo al programe
+
+
+
+# punto de partida
+# podemos ver que habra metodos que tendran ciertos parametros
+#(iterable)si esta la palabra iterable signigica que es obligatorio
+#(widh[,fillchar]) si tiene estas palabras dentro de corchetes [] significa que  es opcional
+#para saber si algo esta en mayuscuslas o es una copia es ver la documentacion
+texto = "Hola mundo tel:4655516155 adios"
+posicion = texto.find("tel:")
+
+if (posicion != -1):
+    print(texto[posicion+4:posicion+13])
+
+"hola mundo".find("mundo")
+# https://www.notion.so/Metodos-Aplicados-1599f3a7ef4d41968477df81e5105e48?pvs=4
+
+"isdigit(): Devuelve True si la cadena es toso numeros(False en caso contrario)"
+c= "100"
+if c.isdigit()==True:
+    c= int(c)
+    print(c+7)
+else:
+    print("No se puede convertir a numero porque c tiene letras")
+#c.isdigit()
+'isalnum(): Devuelve True si la cadena es todo numeros o caracteres algabeticos'
+
+c2 = "ABC10034po"
+c2.isalnum()
+
+"isalpha(): Devuelve True si la cadena es todo caracteres alfabeticos"
+c2.isalpha()
