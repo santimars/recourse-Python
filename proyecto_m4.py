@@ -536,3 +536,183 @@ c2.isalnum()
 
 "isalpha(): Devuelve True si la cadena es todo caracteres alfabeticos"
 c2.isalpha()
+# este es un repaso de los diferentes metodos integrados que no son fijos o los pueden refinar 
+# no es de aprenderse de memoria sino esta viendo las actualizaciones que hagan en python
+
+'split(): Separa la cadena en subcadenas a partir de sus espacios y devuelve una lista'
+"podemos inidicar el caracter a partir del que se separa:"
+lista = "HOla,mundo,mundo,otra,palabra".split(",")
+
+print(lista)
+'join(): Une todos los caracteres de una cadena utilizando in caracter de union'
+hola = ",".join("Hola mundo")
+
+"strip(): Borra todos los espacios por delante y detras de una cadena y la devuelve"
+"   hola mundo   ".strip()
+"podemos indicar el caracter a borrar"
+"--------------hola mundo-------------".strip("-")
+'replace(): Reemplaza una subcadena de una cadena por otra y la devuelve'
+"hola mundo".replace("o","0")
+
+"podemos indicar un limite de veces a reemplazar:"
+"hola mundo mundo mundo mundo".replace("mundo","",4)
+
+''                                                    '''metodos de las listas '''
+
+"append():Añade un item al final de la lista"
+lista = [1,2,3,4,5,]
+lista.append(6)
+print(lista)
+
+"clear() vacia todos los items de una lista"
+lista.clear()
+print(lista)
+
+"extend() una lista a otra"
+lw = [1,3,4,5]
+sk = [32,3,6,87]
+lw.extend(sk)
+print(lw)
+
+"count() cuenta el  numero de veces que aparece un item"
+palabras= ["hola","mundo","mundo,"]
+print(palabras.count("mundo"))
+
+"index(): Devuelve el indice en el que aparece un item (error si no aparece)"
+palabras = ["hola","mundo","mundo","mundo","mundo"]
+texto = "Python"
+palabras.index(texto)
+
+palabras = ["hola","mundo","mundo","mundo","mundo","python","python"]
+texto = "Python"
+if texto in palabras:
+    print("Encontrando")
+    print("posicion de la primera vez que aparece:",palabras.index(texto))
+    print("Numero de veces que aparece:",palabras.count(texto))
+    
+else:
+    print(texto,"No encontrado")
+
+"insert(indice,valor): Agrega un item a la lista en un indice especifico"
+
+nums = [1,2,3]
+nums.inset(0.0)
+print(nums)
+
+"pop() Extrae un item de la lista u lo borra"
+nums = [10,20,30,40,50]
+nums.pop() #Extrae el ultimo elemento
+nums.pop(1) #Extrae el elemento de la posicion 1
+print(nums)
+
+"remove(): Borra un item de la lista directamente"
+nums = [10,20,30,40,50]
+nums.remove(30)
+print(nums)
+
+
+"reverse(): le da la vuelta a la lista actual"
+nums = [10,20,30,40,50]
+nums.reverse()
+print(nums)
+
+"Sort(): Ordena automaticamente los items de una lista pos su lado de menor a mayor"
+lista = [5,10,8,35,-8,-7,1,6]
+lista.sort()
+print(lista)
+
+lista.sort(reverse=True)
+print(lista)
+
+''                                           '''metodos de los conjuntos (sets)'''
+
+"add(): añade un item a un cojunto, su ya existe no lo añade"
+c = set()
+c.add(1)
+c.add(2)
+c.add(3)
+c.add(4)
+c.add(5)
+print(c)
+"discard(): Borra un item de un cojunto"
+c.clear()
+print(c)
+"comparacion de conjuntos"
+c1 = {1,2,3}
+c2 = {3,4,5}
+c3 = {-1,99}
+c4 = {1,2,3,4,5}
+
+"isdisjoint(): Comprueba si el cojunto es disjunto de otro cojunto"
+# si no hay elemento en comun entre ellos
+c1.isdisjoint(c2)
+c1.isdisjoint(c3)
+c1.isdisjoint(c4)
+
+"issubet(): Comprueba si el cojunto es subcojunto de otro cojunto"
+# Si sus cojuntos se encuentran todos dentro de otro
+c3.issubset(c4)
+"issuperset(): Comprueba si el cojunto es subcojunto de otro cojunto"
+#si contiene todos los items de otro
+
+c3.issuperset(c1)
+
+"Metodos Avanzados"
+'''
+Se utilizan uniones, diferencias y otras operaciones avanzadas entre cojuntos.
+Suelen tener dos formas, la normal que devuelve el resultado, y otra que hace lo mismo pero actualiza el propio resultado.
+'''
+
+c1 = {1,2,3}
+c2 = {3,4,5}
+c3 = {-1,99}
+c4 = {1,2,3,4,5}
+
+"union() une un cojunto a otro y devuelve el resultado en un nuevo cojunto"
+c1.union(c2)
+
+"update() Une un cojunto a otro en el popio conjunto"
+c1.update(c2)
+print(c1)
+
+
+'difference() Encuentra los elemnteos no comunes entre dos cojuntos'
+c1 = {1,2,3}
+c2 = {3,4,5}
+c3 = {-1,99}
+c4 = {1,2,3,4,5}
+c1.difference(c2)
+
+'''y Muchos otros... difference_update(),intersection(),intersection_update(),
+   symmetric_difference()'''
+   
+''                                    """ 'Metodos de los diccionarios' """
+colores = {"amarillo":"yellow",
+           "azul":"blue",
+           "verde":"green"
+           }
+print(colores["amarillo"])
+
+"get(): Busca un elemento a partir de su clave y si no lo encuentra devuelve un valor por defecto"
+print(colores.get("negro","no se encuentra"))
+print("amarrilo" in colores)
+
+"keys()genera una lista en clave de los registros del diccionario"
+colores.keys()
+
+"values(): Genera una lista en clave de los registros del diccionario"
+colores.values()
+
+"items(): Genera una lista en clave-valor de los registros del diccionario"
+colores.items
+
+for c,v in colores.values():
+    print(c,v)#clave y valor
+
+"pop(): Extrae un registro de un diccionario a partir de su clave y lo borra, acepta valor por defecto"
+colores.pop("amarrillo","nose ha encontrado")
+print(colores)
+
+"clear(): borra todos los registros de un diccionario"
+colores.clear()
+print(colores)
