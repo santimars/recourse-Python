@@ -716,3 +716,72 @@ print(colores)
 "clear(): borra todos los registros de un diccionario"
 colores.clear()
 print(colores)
+''                         '''Errores y excepciones'''
+
+"1. Errores"
+'''
+los tipos de errores son de errores de sintaxis o excepciones
+el errores de sintaxis es cuando se ejecuta en tiempo de interpretacion
+este error sale que sale antes de que python termine de ejecutar todo el codigo
+'''
+'''
+las excepciones puede ser errores que puede ser problema de nosotros o de python
+puede ser que este una expecion que hallamso escrito mal 
+los errores de logica puede ser mas dificil que poder resolver
+otras pueden ser los casos nuestro programa este mal
+
+hay que suponer cuando hagamos formularios para las personas que nuestro usuario lo va  a hacer mal
+debemos pensar que cosas malas pueden meter el usuario y al final que ponga lo que nosotros nesecitemos
+ese tipo de errores son errores en tiempo de ejecucion 
+
+para poder adelantarnos a estos errores hay que presipitarnos para ver que puede salir mal en nuestro programa
+consejo
+hacer el programa 
+implementar soluciones y presipitaciones
+ver donde falla
+donde son los puntos calientes que siempre va a nesecitar cuando interactuemos con los usuarios
+no hay control cuando pedimos datos a los usuarios
+siempre hay meter excepciones 
+
+python no nos obliga a hacer excepciones
+pero en otros lenguajes si toca hacerlo por ejemplo java
+en ciertos puntos que son muy problematicos 
+
+hay que generar una contramedida
+listado es expeciones de python
+
+excpetionn hierarchy websida docs Python
+
+
+'''
+
+'''Creando la excepcion - Bloques try y except'''
+'''
+Para prevenir el error, debemos poner el codigo propenso a error de un bloque try y luego encadenaremos un bloque except
+para tratar la excepcion:
+'''
+
+try:
+    n = float(input("Introduce un numero: "))
+    m = 4
+    print("{}/{}={}".format(n,m,n/m))
+except:
+    print("Ha ocurrido un error, introduce bien el numero")
+    
+print("AQUI CONTINUAMOS EL PROGRAMA")
+
+''' esto es lo mismo que un if y un else. 
+cuando pongamos try este se acompana con un except
+'''
+
+'''
+en el bloque del try hay que poner el codigo que va succeptiblea error
+todo codigo que puede hacernos una problema de
+tanto las interaciones con el usuario el llamar a otras aplicaciones 
+deben estar dentro de un try
+
+el expect ponemos nuesta contramedida
+si tenermos un problema el except va darnos una contramedida que puede darnos un aviso
+y el codigo sigue continuando
+
+'''
