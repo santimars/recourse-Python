@@ -785,3 +785,137 @@ si tenermos un problema el except va darnos una contramedida que puede darnos un
 y el codigo sigue continuando
 
 '''
+'Utilizando un while(true), podemos aseguranos de que el susuarios introdice bien el valor'
+# repitiendo la lectura por teclado hasta que lo haga bien, y entonces rompemos el buble con un break
+while True:
+    try:
+     n = float(input("Introduce un numero: "))
+     m = 4
+     print("{}/{}={}".format(n,m,n/m))
+    except:
+     print("Ha ocurrido un error, introduce bien el numero") 
+     
+    else:
+        print("Good job")
+        break
+
+
+"""'BLoque else en excepciones'"""
+'''
+es posible encadenar un bloque else despues del except para comprobar el case en que todo dunciones correctamente
+(no se ejecuta la excepcion)
+
+El bloque else es un buen momento para romper la iteracion con break si todo funciona correctamente:
+'''
+while(True):
+ try:
+     n = float(input("Introduce un numero: "))
+     m = 4
+     print("{}/{}={}".format(n,m,n/m))
+ except:
+     print("Ha ocurrido un error, introduce bien el numero") 
+ else: 
+    print('Todo ha funcionado correctamente')
+    break # Importante romper la iteracion si todo ha salido bien  
+
+''         '''Bloque finally en excepciones'''
+
+'''
+por ultimo es posible utilizar un bloque finally que se ejecute al dinal del codigo, ocurra o no ocurra un error:
+'''
+while(True):
+ try:
+     n = float(input("Introduce un numero: "))
+     m = 4
+     print("{}/{}={}".format(n,m,n/m))
+ except:
+     print("Ha ocurrido un error, introduce bien el numero") 
+ else: 
+    print('Todo ha funcionado correctamente')
+    break # Importante romper la iteracion si todo ha salido bien  
+ finally:
+    print("Fin de la iteracion") # siempre que se ejecuta
+    
+# nose puede poner un expect a palo seco por eficiencia 
+#cuando vemos que nuestro expect poner motivo 
+'''ya que hay que poner el try except cada vez que hay un posible riesgo a error osea todo
+puesto programas tienes que estar llenos de control de codigo 
+y eso hace que sea mas pesado de codigo
+
+hay mucho mas codigo en expecion de codigo que el mismo codigo 
+si hay posibles errores
+
+hay que añadir un try except por cada error que veamos 
+me interesa que los errores sean diferentes para se pueda ver si hay un erro
+el punto mas delicado de la programacion son los errores 
+
+cuando ponemos un except ya que ha python le toca ver que tipo de error se ha cometido y comenzara 
+a buscar este tipo de error hasta tratarla asi como es para nuestro python puede que esto sea 2 milisegundos pero para nuestro
+dia a dia esto puede que nos tarde hasta 3 horas en ejecutar
+
+no seria para nada eficiente hacer esto nunca pongas esto mejor hacer esto 
+'''
+''                     '''EXCEPCIONES MULTIPLES'''
+
+'CAPTURANDO MULTIPLES EXCEPCIONES'
+'GUARDANDO LA EXCEPCION'
+
+'''
+podemos asignar una excepcion a una variable (por ejemplo e) De esta manera haciendo un pequeño truco podemos analizar el tipo
+de error que sucede gracias a su identificador:
+'''
+try:
+ m = input("Introduce un numero: ")
+ print(5/m)
+except Exception as e: # aqui le damos un alias y lo hacemos con el 'as' y le ponemos a una variable en este caso e. as es un generador de alias
+    print( type(e).__name__)
+
+'''
+hay que ver que tipos de errores pasan por nuestro programa para poder mejorar el codigo y ahcerlo mas eficiente
+'''
+''                                        '''ENCADENANDO EXCEPCIONES '''
+'''
+Gracis a los identificadoes de erorres podemos crear multiples comprobaciones, siempre que dejemos en ultimo lugar la excepcion por defecto 
+Excepcion que engloba cualquier tipo de error (si la pusieramos al principio, las demas excepciones nunca se ejecutarian):
+'''
+try:
+    n = float(input("Introduce un numero: "))
+    print(5/n)
+except TypeError:
+    print("No se puede dividir el numero por una cadena")
+except ValueError:
+    print("Debes introducir una cadena sea un numero")
+except ZeroDivisionError:
+    print("No se puede dividir por cero, prueba otro numero")
+except Exception as e:
+    print(type(e).__name__)# con este truco haci nos saltamos los errores desconocimos los mas raros que pasen
+    #ponerlo en ultimo utlimo de todos los comunes que pongamos 
+
+#estas estructuras toma tanto tiempo porello hay que darle los errores mas comunes a python ponerlas siempre arriba y las mas estranas abajo
+
+'''Lanzar excepciones'''
+new_var = '''cuanto sepamops un determinado fallo lanzamos un aviso asi ser mas proactivo'''
+
+while (True): 
+ try:
+    n = float(input("Introduce tu asiento: "))
+    if n == 13:
+        raise TypeError
+    else:
+        print("Tu asiento es el ",n)
+        break
+ except TypeError:
+    print("El numero 13 esta prohibido")
+ except ValueError:
+    print("Debes introducir el numero de asiento")
+ except Exception as e:
+    print(type(e).__name__)
+    print("Error descnonocido")
+    
+""" 
+cuando lanzamos una excepcion podemos decirle a python que este es un error
+en ocasiones nuestra voz de alarma puede ser mas rapido que el de python
+podemos evaluar y asignar cualquier cosa para que produzca un error y no le permite al usuario agregarlo
+"""
+'''He hecho una voz de alarma para python
+esto es como logica del problema'''
