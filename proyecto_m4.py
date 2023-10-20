@@ -499,7 +499,7 @@ si notamos que estamos hacieno un mismo codigo siempre habra una solucion mejor
 ''                                  ''' METODOS APLICADOS'''
 
 # ALGORITMOS APLICADOS
-lista.sort()# sort nos ordena la lista 
+#lista.sort()# sort nos ordena la lista 
 # los metodos que hay en python que pueden cambiar es su actualizaciones siempre estan en constante cambio 
 # en varias formas en el que aparece
 # antes de hacer algo preguntemonos si python ya lo tiene
@@ -919,3 +919,85 @@ podemos evaluar y asignar cualquier cosa para que produzca un error y no le perm
 """
 '''He hecho una voz de alarma para python
 esto es como logica del problema'''
+
+#estamos mejorando nuestros propios errores cuando ya tengamos nuestro propio programa y ya este funcionando
+
+''                             '''INVOCACIONES DE EXCEPCIONES'''
+
+'''
+En algunas ocasiones quiza nos interesa llamar un error manualmente, ya que un print comun no es muy elegante:
+'''
+
+def mi_funcion(algo = None):
+ if algo is None:
+     print("Error! No se permite un valor nulo (con un print)")
+     
+
+mi_funcion("Hola")
+mi_funcion()
+''              '''La instruccion raise'''
+
+'''
+Gracias a raise podemos lanzar un error manual pasandole el identificador. Luego simplemente podemos añadir un except
+para tratar esta excepcion que hemos lanzado:
+'''
+def mi_funcion(algo = None):
+    try:
+     if algo is None:
+      raise ValueError("Error! Nose permite un valor vacio")
+        
+    except NameError:
+     print("No se permite una variable vacia")
+    
+    except ValueError:
+        print("Error No se permite un valor nulo")
+        
+    except Exception:
+        print("Error generico")
+mi_funcion()
+#typerror y valueerror son las mas tipicas errres que podemos poner
+
+def saludar(nombre = None):
+    try:
+        if nombre == None:
+            raise ValueError("Eror Nose permite un valor vacio")
+        else:
+            print(f"Hola {nombre}!.")
+    except ValueError:
+        print("No se permite un valor vacio")
+
+saludar("Santiago")
+saludar()
+
+'''
+si queremos lanzar esta excepcion y crear una excepcion propia como errores propios errores personalizado
+se puede hacer
+'''
+
+class CiudadNoPermitidaException(Exception):
+    def __init__(self,ciudad=None):
+        self.ciudad = ciudad
+        super().__init__("Error! La ciudad {} que busca no se encuentra en nuestro listado".format(self.ciudad))
+        #"""Cuando queramos mandar un mensaje en este caso se lo mandamos a nuestro padre para que el se encarge de mostrarlo"""
+     
+if __name__  == "__main__":
+    
+    listado_de_personas = ["Madrid", "Barcelona", "Londres", "Nueva york", "Tokio"]
+    try:
+     ciudad = input("Introduzca el nombre de una ciudad: ")  
+     if ciudad not in listado_de_personas:
+        raise CiudadNoPermitidaException(ciudad)
+     else:
+        print("Felicidades! La ciudad que vusca se encuentra en nuestro listado, puede viajar a ella")
+        # podemos hacer que nuestra valor siemrpe termine en Excepcion o Error
+        # xxxExcepcion
+        #xxxxError
+        # tiene que estar estilo CamelCase
+    except CiudadNoPermitidaException as e:
+      print(e)
+      print(type(e).__name__, "->",e)
+    except Exception as e:
+      print(e)
+      print(type(e).__name__, "->",e)
+        
+            
