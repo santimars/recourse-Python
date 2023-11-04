@@ -154,7 +154,7 @@ fecha2 = fecha1 + relativedelta(years=2)#years months days hour minute second mi
 print(fecha1)
 print(fecha2)
 
-'''si operamos con dias podemo usar timedelta pero si queremos trabajar con meses y años usamos relativedelta'''
+'''si operamos con dias podemos usar timedelta pero si queremos trabajar con meses y años usamos relativedelta'''
 """
 datetime - libreria principal
 locale - podemos cambiar de localicacion
