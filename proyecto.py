@@ -1748,7 +1748,7 @@ print(t())
 #podemos enviar evidentemente, podemos como argumentos variables
 
 def sumar(num1+num2):
- suma= num1+num2
+ suma = num1 + num2
  return suma
 num_a = 2# no hay problema que se llame igual pero tampoco es importante que se llamen asi
 num_b = 5
