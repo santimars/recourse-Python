@@ -772,7 +772,7 @@ class Alimento(Producto):  # esto es lo qye va a generar la herencia de esta cla
         super().__init__(Idprodructo,nombre,precio,descripcion)#super hereda lo que esta dentro de nuestra herencia en este caso es Producto
         self.Productor = Productor
         self.Distribuidor = Distribuidor
-    super().saludar    # vemos que podemos usar accesos a las funciones que tenga el padre sea lo que tenga padre
+        super().saludar    # vemos que podemos usar accesos a las funciones que tenga el padre sea lo que tenga padre
         
     def __str__(self):
         return """-> PRODUCTO <-
