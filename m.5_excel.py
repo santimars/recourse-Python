@@ -20,15 +20,12 @@ Vamos a ver cómo trabajar con ficheros tipo Excel (.xls),
    Lo primero será importar dicha librería a nuestro programa mediante
      la instrucción:
 '''
-import os
+
 import openpyxl
 
-# Obtén la ruta completa al archivo 'fichero.xlsx'
-ruta_archivo = os.path.join(os.path.dirname(__file__), 'fichero.xlsx')
-
-# Carga el libro de trabajo
-wb = openpyxl.load_workbook(ruta_archivo)
-
+# Abrir Archivo Excel (workbook) # importante poner siempre la ruta de acceso como esta el archibo guardado
+wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/Libro1.xlsx")
+print(wb.sheetnames)
 
 '''
 hay que invertir  mas tiempo leyendo la documentacion de las librerias y buscar las 
@@ -43,4 +40,12 @@ los ficheros excel .xls tienen un formato muy complejo y visual
 lo que hace que sean muy pesados
 en Programacion prodemos trabajar con ficheros excel y suplir alfunasd e sus debilidades o trabajaremos mas eficientemente 
 con ficheros CSV.
+
 '''
+"""
+IMPORTANTE
+
+TENER CERRADO SIEMPRE EL EXCEL CUANDO VALLAMOS A EDITAR
+ya que se puede corromper 
+no se permite que este abierto el excel en cualquier lado
+"""
