@@ -24,8 +24,33 @@ Vamos a ver cómo trabajar con ficheros tipo Excel (.xls),
 import openpyxl
 
 # Abrir Archivo Excel (workbook) # importante poner siempre la ruta de acceso como esta el archibo guardado
-wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/Libro1.xlsx")
+wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/02_Excel_data.xlsx")
+
+# imprimir los nombres
+print("Nombre de hojas: ")
 print(wb.sheetnames)
+
+print("\nNombre de hojas:")
+for sheet in wb:
+  print("-",sheet.title)
+
+#hoja 1
+
+#crea una hoja que haga referencia a la primera hoja de excel
+
+hoja_uno = wb.sheetnames[0]
+print("\n Primera Hoja:")
+print("-",hoja_uno)  
+
+hoja_otros = wb.sheetnames[2]
+
+del hoja_otros
+for sheet in wb:
+  print("-",sheet.title)
+
+wb.save("02_Excel_data.xlsx")  
+
+
 
 '''
 hay que invertir  mas tiempo leyendo la documentacion de las librerias y buscar las 
