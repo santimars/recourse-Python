@@ -175,10 +175,94 @@ print("Celda B2 despues de modificarla: ", hoja_dos["B2"].value)
 
 #Modificar la celda C2, pero eta vez conuna formula
 print("Celda C2 antes de su modificacion ",hoja_dos["C2"].value)
-hoja_dos["C2"] = "=SUM(B2, 3)" # las funciones que debemos usar en excel deber ser de la forma inglesa no capta en español
+x = 2
+y = 3
+f = "=SUM(B{},{})".format(x,y)
+hoja_dos["C2"] = f # las funciones que debemos usar en excel deber ser de la forma inglesa no capta en español
 print("Celda C2 después de su modificación: ",hoja_dos["C2"].value)
 
 #Guardar cambios (IMPORTANTE! El excel deve estar cerrado)
 
 wb.save("/Users/santirodriguez/Desktop/02_Excel_data.xlsx") # Guardamos datos antes de ejecutar el resto
 
+# sabiendo esto podemos hacer una funcion donde podemos automatizar el valor sumar
+def sumar(a,b,c):
+  return "=SUM({}{},{})".format(a,b,c)
+    
+hoja_dos["C3"] = sumar("B",3,3)
+print ("La fórmula de Celda C3 es :",hoja_dos["C3"].value)
+hoja_dos["C4"]  = sumar("B",4,3)
+print("la formula de la celda C4 es : ",hoja_dos["C4"].value)
+
+#Guardar cambios (IMPORTANTE! El excel deve estar cerrado)
+
+wb.save("/Users/santirodriguez/Desktop/02_Excel_data.xlsx") # Guardamos datos antes de ejecutar el resto
+
+''                       '''Añadir contenido nuevo a una hoja concreta'''
+
+
+hoja_dos.append(["Junio",99,100])
+# asi agregamos grandes conjuntos de datos en excel 
+
+#Guardar cambios
+wb.save("/Users/santirodriguez/Desktop/02_Excel_data.xlsx") # Guardamos datos antes de ejecutar el resto
+
+''                    '''Crear una hoja nueva y darle nombre'''
+
+
+
+# creamos una nueva hoja(por defecto al final, si no,
+# le podemos pasar como parametro el indice de la posicion que se quiera).
+
+hoja_otros = wb.create_chartsheet("Otros") 
+
+#Imprimir los nombres de las hojas 
+print("Nombre de las hojas: ")
+print(wb.sheetnames)
+#Guardar cambios
+wb.save("/Users/santirodriguez/Desktop/02_Excel_data.xlsx") 
+
+''                                       '''AVANZADO. Generar graficas'''
+from openpyxl.chart import (
+    AreaChart,
+    Reference,
+    Series,
+)
+
+#todo lo que es diseño como graficas y tablas con openpyxl podemos hacerlos 
+
+#Abrir un archivo Excel(workbook)
+
+# Definimos la hoja dos (hojas de ventas)
+hoja_dos = wb["ventas"]
+
+# configuracion y creacion de la grafica
+grafica = AreaChart()
+"grafica = openpyxl.chart.AreaChart()"
+
+# Para versiones nuevas de Anaconda : grafica = AreaChart()
+
+grafica.title = "Grafica de Area"
+grafica.style = 13
+grafica.x_axis.title = "Periodo"
+grafica.y_axis.title = "Utilidades"
+
+"periodo = openpyxl.chart.Reference(hoja_dos, min_col =1, min_row = 2, max_col = 1,max_row = 7)"
+periodo = Reference(hoja_dos, min_col =1, min_row = 2, max_col = 1, max_row = 7)
+# Para versiones nuevas de Anaconda: periodo = Reference(hoja_dos, min_col =1, min_row = 2, max_col = 1, max_row = 7)
+"utilidades = openpyxl.chart.Reference(hoja_dos, min_col = 2, min_row = 1, max_col = 3, max_row = 7)"
+utilidades = Reference(hoja_dos, min_col = 2, min_row = 1, max_col = 3, max_row = 7)
+# Para versiones nuevas de Anaconda: Utilidades = Reference(hoja_dos, min_col = 2, min_row = 1, max_col = 3, max_row = 7)
+
+#estos metodos agregamos el metodo de las x y el otro el metodo de la y
+grafica.add_data(utilidades,titles_from_data = True)
+grafica.set_categories(periodo)
+
+# le decimo en que celda va estar el grafico
+hoja_dos.add_chart(grafica, "A1O")
+
+
+#Guardar cambios
+wb.save("/Users/santirodriguez/Desktop/02_Excel_data.xlsx") # Guardamos datos antes de ejecutar el resto
+#Creamos una tabla en excel para mostrar los valores de utilidades por
+#periodes
