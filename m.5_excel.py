@@ -22,3 +22,4 @@ Vamos a ver cómo trabajar con ficheros tipo Excel (.xls),
 '''
 
 import openpyxl
+wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/Excel1.xlsx")
