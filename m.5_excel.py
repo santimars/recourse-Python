@@ -22,19 +22,15 @@ Vamos a ver cómo trabajar con ficheros tipo Excel (.xls),
 '''
 
 import openpyxl
-
-wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/Excel2.xlsx")
-
-# imprimir los nombres
-print("Nombre de hojas: ")
-print(wb.sheetnames)
+from openpyxl.chart import BarChart, Reference
 
 # Abrir Archivo Excel (workbook) # importante poner siempre la ruta de acceso como esta el archibo guardado
 wb = openpyxl.load_workbook("/Users/santirodriguez/Desktop/Excel2.xlsx")
-
+sheet = wb.active
 # imprimir los nombres
 print("Nombre de hojas: ")
 print(wb.sheetnames)
+
 
 print("\nNombre de hojas:")
 for sheet in wb:
@@ -44,7 +40,7 @@ for sheet in wb:
 
 #crea una hoja que haga referencia a la primera hoja de excel
 
-hoja_uno = wb.sheetnames[0]
+hoja_uno = wb.sheetnames
 print("\n Primera Hoja:")
 print("-",hoja_uno)  
 
@@ -229,7 +225,7 @@ print(wb.sheetnames)
 #Guardar cambios
 wb.save("/Users/santirodriguez/Desktop/Excel2.xlsx") 
 
-"""
+
 try: 
  
  
@@ -242,13 +238,12 @@ try:
  hoja_dos = wb["ventas"]
  
  # configuracion y creacion de la grafica
- grafica = AreaChart()
- "grafica = openpyxl.chart.AreaChart()"
- 
+ grafica = BarChart()
+
  # Para versiones nuevas de Anaconda : grafica = AreaChart()
  
  grafica.title = "Grafica de Area"
- grafica.style = 13
+ grafica.style = 60
  grafica.x_axis.title = "Periodo"
  grafica.y_axis.title = "Utilidades"
  
@@ -272,4 +267,4 @@ try:
  #Creamos una tabla en excel para mostrar los valores de utilidades por
  #periodes
 except Exception as e:
-    print(f"Error al ejecutar el código de manipulación de Excel: {e}")"""
+    print(f"Error al ejecutar el código de manipulación de Excel: {e}")
