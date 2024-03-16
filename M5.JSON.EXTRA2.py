@@ -30,6 +30,31 @@ class Asignatura:
         self.nombre = nombre
         self.dificultad = dificultad
 
+class EstudianteEncoder(JSONEncoder):
+    def default (self, o):
+        return o.__dict__
+# Vamos a preparar el JSON con el que trabajemos
+a1 = Asignatura("Introduccion a la programacion","Basica")
+a2 = Asignatura("Programacion en Python", "Intermedia")
+a3 = Asignatura("Inteligencia Artificial","Avanzada")
+
+lista_asignaturas =[a1,a2,a3]
+e1 = Estudiante(1,"Cristian",lista_asignaturas)
+Estudiante_json = json.dumps(e1,indent=4,cls=EstudianteEncoder)
+
+print("JSON de un Estudiante conel que vamos a trabajar")
+print(Estudiante_json)
+
+estudiante = json.loads(Estudiante_json,object_hook=lambda d : SimpleNamespace(**d))
+
+#leemos el JSON.loads y lo cargamos en objetos de nuestras correspondientes clases
+print("\nConvertimos el JSON anterior aun objeto de la clase", type(estudiante).__name__)
+print(" id estudiante:",estudiante.id_estudiante)
+print(" Nombre: ",estudiante.nombre)
+print("lista de asignaturas:")
+for i in estudiante.lista_asignaturas:
+    print("\t",i)
+
 '''
 Hasta ahora, las opciones que hemos visto son soluciones rapidas que son ideales para cuando queremos des-serializar un
 fichero JSON y convertirlo a un objeto Python de una sola clase. Pero si queremos una conversion mas comleja, donde implica
