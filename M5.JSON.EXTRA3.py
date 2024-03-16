@@ -51,3 +51,15 @@ with open(fichero,'w') as f:
 
 
   '''
+# Abrimos y leemos el fichero
+Estudiante_json_leido = open(fichero).read()
+
+Estudiante = jsonpickle.decode(Estudiante_json_leido)
+print("\n Objeto de la clase", type(Estudiante).__name__)
+print(" - ID de estudiante: ",Estudiante.id_estudiante)
+print(" - Lista de asignaturas: ")
+for a in Estudiante.lista_asignaturas:
+  print("\t Objeto de la clase",type(a).__name__,"Nombre: ",a.nombre,"Dificultad :", a.dificultad)
+
+# si el json ha salido bien tomemos el JSON y lo validamos en un visualizador de JSON para ver que 
+# no tengamos errores de index
