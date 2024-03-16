@@ -30,3 +30,9 @@ class Asignatura:
         self.nombre = nombre
         self.dificultad = dificultad
 
+'''
+Hasta ahora, las opciones que hemos visto son soluciones rapidas que son ideales para cuando queremos des-serializar un
+fichero JSON y convertirlo a un objeto Python de una sola clase. Pero si queremos una conversion mas comleja, donde implica
+una conversion de objetos, de varias clases, la solucion que hay que abordar es jsonpickle
+'''
+# En M5.JSON.EXTRA3.PY esta la siguiente parte de este extra 
