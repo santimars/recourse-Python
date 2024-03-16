@@ -1,0 +1,22 @@
+{
+    "py/object": "__main__.Estudiante",
+    "id_estudiante": 1,
+    "nombre": "Cristian",
+    "lista_asignaturas": [
+        {
+            "py/object": "__main__.Asignatura",
+            "nombre": "Introduccion a la programacion",
+            "dificultad": "Basica"
+        },
+        {
+            "py/object": "__main__.Asignatura",
+            "nombre": "Programacion en Python",
+            "dificultad": "Intermedia"
+        },
+        {
+            "py/object": "__main__.Asignatura",
+            "nombre": "Inteligencia Artificial",
+            "dificultad": "Avanzada"
+        }
+    ]
+}

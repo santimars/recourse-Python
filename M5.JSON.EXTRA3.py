@@ -14,3 +14,40 @@ las ventajas son:
 
  veamos un Ejemplo:
 '''
+import jsonpickle
+
+class Estudiante():
+ def __init__(self,id_estudiante,nombre,lista_asigaturas):
+  self.id_estudiante = id_estudiante
+  self.nombre = nombre
+  self.lista_asignaturas= lista_asigaturas
+
+
+class Asignatura:
+    def __init__(self,nombre,dificultad):
+      self.nombre = nombre
+      self.dificultad = dificultad
+#Creacion de objetos (principal : Estudiantes y secundario: Asignatura)
+a1 = Asignatura("Introduccion a la programacion","Basica")
+a2 = Asignatura("Programacion en Python","Intermedia")
+a3 = Asignatura("Inteligencia Artificial","Avanzada")
+lista_asignaturas = [a1,a2,a3]
+e1 = Estudiante(1,"Cristian",lista_asignaturas)
+
+#preparacion del fichero
+fichero = 'jsonEmpleado' + '.json'
+#codificacion de un objeto (el) a u JSON String
+Estudiante_json = jsonpickle.encode(e1,indent=4) # indent = 4 es opcional dino nos da minificado
+print("JSON de un Estudiante con el que vamos a trabajar")
+print(Estudiante_json)
+
+# Escribimos el JSON String en el fichero
+with open(fichero,'w') as f:
+  f.write(Estudiante_json)
+
+  '''
+  me ha añadido clave valor para ver endonde es la informacion
+  me muesta la lista con 3 diccionarios con la clase y la referencia en la que pertenece
+
+
+  '''
