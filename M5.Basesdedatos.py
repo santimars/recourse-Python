@@ -75,3 +75,13 @@ c.execute("CREATE TABLE usuarios (nombre VARCHAR(100), edad INTEGER, email VARCH
 conexion.commit()# la informacion ha codificado la informacion no se puede visualizar para ellos se usa un programa para ver la visualizacion
 # cerramos la conexion, si no la cerramos se mantendra en uso y no podemos gestionar el fichero
 conexion.close()
+'''
+create 
+insert
+select
+uptade
+delete
+commit
+rollback
+savepoint
+'''
