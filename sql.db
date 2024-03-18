@@ -1,0 +1,137 @@
+ahora es la nueva manera de hacer nuestro sql
+aprendiendo presicacmente lo que nesecitamos para poder llevar
+acabo todo los argumentos que nesecito para digitalizar
+
+
+la series de elemento que usamos que hacemos un Select
+es :
+añadimos el Select
+añadimos cual es su Funcion
+________________________________________________________________________________
+Select '| LO USAMOS PARA VER DE DONDE EN QUE COLUMNAS VAMOS A HACER LA CONSULTA
+From    | LO USAMOS PARA VER EN DONDE DE QUE TABLA VAMOS A VER LAS COLUMNAS
+        |
+*       | CUANDO USAMOS EL ASTERISCOS EN EL SELECT ES PARA INDICAR QUE USAREMOS
+        | TODAS LAS COLUMNAS DE UNA TABLA       
+;_______| SE USA DESPUES DE PONER EL NOMBRE DE NUESTRA TABLA OSEA = FROM (TABLA);
+
+
+________________Estructura básica de una consulta en SQL______________________
+
+VAMOS A VER TODAS CONSULTAS QUE SE PUEDEN HACER SQL
+
+WHERE | AÑADIREMOS WHERE DEBADO DE FROM QUE NOS VA A PERMITIR PONER FILTROS
+ORDEN BY| NOS AYUDA A ORGANIZAR LOS DATOS DE FORMA ACENDENTE Y DECENDENTE
+
+________________Consultas en SQL. Select____________________________________
+SELECT nos va mostrar los datos con una serie de requerimientos que tendremos
+este es el que mas usaremos en nuestras busquedas de datos
+              _
+SELECT NOMBRE, |
+APELLIIDO,     |  LOS DATOS QUE QUEREMOS QUE BUSQUE OSEA ESTAN COLUMNAS
+ID,            |  
+EQUIPO        _|
+FROM JUGADOR       ,<--------------------- DE QUE TABLA QUEREMOS SACAR LOS DATOS
+WHERE EQUIPO = 'CHICAGO BULLS'BY  <       LOS FILTROS QUE USAREMOS EN ESTE CASO
+ALTURA > 190                              EL EQUPO QUE QUEREMOS VER Y SU ALTURA MAYOR
+ORDEN BY NOMBRE  <--\                         A 190 CM 
+                    |
+                    |
+                     COMO QUEREMOS QUE ESTE ORDENADA NUESTRA LISTA DE DATOS
+                     EN ESTE CASO QUEREMOS QUE SE ORDENE POR NOMBRE, SQL 
+                     ORDENA DE MANERA ACENDETE LO QUE SIGNIFICA QUE ES DE  MAYOR A MENOR
+                     EN ESTE CASO QUE SON LETRAS ES DE LA A A LA Z.
+
+
+_________________________ Consultas en SQL. Insert_______________________________________
+INSERT  NOS PERMITE AÑADIR UNA NUEVA FILA
+INSERT INTO - | PERMITE ES INSERTA INFOMRACION CUANDO QUEREMOS ES serie
+              | MAS ESPECIFICOS A INGRESAR LA INFORMACION, POR EJEMPLO SOLO
+              | DESEAMOS DE UNA TABLA DE 5 COLUMNAS SOLO AGREGAR INFORMACION
+              | EN SOLO 2 COLUMNAS PARA ELLO AGREGAMOS DESPUES DE INTO DOS ()
+              | HE INGRESAMOS DENTRO LOS NOMBRES DE LAS COLUMNAS QUE DESEAMOS
+              | AGREGAR LOS DATOS.
+              | TUPLA
+              | DE ESTA MANERA
+              |
+              | INSERT INTO (NOMBRE, APELLIDO)
+              | 
+VALUES()   -  | TODOS LOS VALORES QUE QUEREMOS PONER LO PONDREMOS POR MEDIO
+              | DE ESTE METODO YA QUE SERA LA MANERA EN LA QUE INGRESAREMOS 
+              | LOS DATOS 
+              | NOTA.
+
+              | VERIFICAR QUE TIPO DE DATOS ESTA USANDO LAS COLUMNAS QUE VAMOS INGRESAR
+              | LOS DATOS PORQUE DE ESA MANERA DEBEMOS AGREGARLOS.
+              | POR EJEMPLO SI ES UN STRING TENEMOS QUE AGREGARLO POR MEDIO DE ''
+              | SI ES UN INT NO HARA FALTA PONERLE COMILLAS.
+
+
+                              INSERTAMOS LOS NOMBRES DE LA COLUMNAS DONDE QUEREMOS 
+                              AGREGAR INFOMRACION
+ ASI LE DECIMOS QUE                |
+ QUEREMOS INGRESAR DATOS           |
+_____________            ____________________
+|           |            |                  |
+INSERT INTO cliente (id_cliente,nombre,apellido)
+VALUES(7,'maria','quiceno');
+        |               |
+        _________________
+        AGREGAMOS LOS DATOS STR EN ''
+        INT COMO SIEMPRE
+        AL FINA AGREGAMOS ;
+
+SI DESEAMOS INGRESAR INFORMACION DEMAS PODEMOS PONER MAS (),()
+INSERT INTO (NOMBRE, APEDILLO)
+VALUES('MARTA','PEREZ'),
+('SANDRA','ABIGUIL');
+_______________________Consultas en SQL. Update____________________________
+UPDATE         | SI QUEREMOS ES ACTUALIZAR LOS DATOS QUE TENERMOS DE UNA FILA 
+               | USAMOS UPDATE PARA CAMBIAR O AGREGAR LOS DATOS QUE QUEREMOS ACTUALIZAR 
+
+
+              UPDATE cliente       <---------- EN QUE TABLA QUEREMOS HACER EL CAMBIO      
+       --->   SET apellido = 'Rodriguez'
+       |      WHERE id_cliente = 6;       <------------ EN WHERE PONEMOS EL DATO EN DONDE
+       |                                                QUEREMOS QUE SE HAGA EL CAMBIO
+       |
+       |__> AQUI PONDREMOS EL DATO QUE QUEREMOS ACTUALIZAR 
+
+
+___________________Consultas en SQL. Delete___________________
+DELETE         | CON DELETE FROM ELIMINAMOS TODOS LOS ARCHIVOS DE UNA FILA
+FROM           | NO TENERMOS LA CAPACIDAD DE QUITAR SOLO UN DATO SINO TODA UNA FILA 
+               | YA QUE PARA ELLO USAMOS LA ACTUALIZACION DE DATOS PARA HACER ESTOS CAMBIOS.
+               | 
+               |
+               |
+               |
+
+DELETE 
+FROM cliente
+WHERE id_cliente = 8; ESTA FILA SE ELIMINARA COMPLETAMENTE
+
+SI QUEREMOS ES ELIMINAR MAS DE UNA FILA PODEMOS USAR "AND"
+
+DELETE 
+FROM cliente
+WHERE id_cliente = 8 and id_cliente = 10; ASI SE ELIMINARAN ESTOS 2 DATOS
+
+------------------------------------------------------------------------------------------------
+             ___________________FUNCIONES DE AGREGACION SQL______________________
+
+
+             Funciones. Count
+
+
+SQL NOS PERMITE CONTAR CUANTAS FILAR EN UNA DETERMINADA TABLA
+
+
+
+
+   SELECT COUNT(*)
+   DATOS
+   WHERE DATO > 5
+   GROUP BY DATOS;
+
+
