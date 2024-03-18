@@ -125,13 +125,31 @@ WHERE id_cliente = 8 and id_cliente = 10; ASI SE ELIMINARAN ESTOS 2 DATOS
 
 
 SQL NOS PERMITE CONTAR CUANTAS FILAR EN UNA DETERMINADA TABLA
+ 
+        NOS PERMITE ES CONTAR LO QUE DESEAMOS EL * DENTRO DE LAS COMILLAS ES EL
+        CAMPO EN EL QUE DESEAMOS CONTAR
+   _____________
+   |            |
+   SELECT COUNT(nombre)
+   cliente             ---->        AQUI PONEMOS LA FILA DONDE QUEREMOS ANALIZAR LA INFOMRACION
+   WHERE nombre = 'CRISTIAN'
+   GROUP BY cliente;
 
+PODEMOS ES ORDENAR TAMBIEN AGREGANDO 'ORDEN BY'
 
+SELECT count(nombre)
+equipos
+medallas
+WHERE pais = 'Argentina'
+GROUP BY equipos,
+medallas 
+ORDEN BY equipos 
+ 
 
+______________ Funciones. Sum________________
 
-   SELECT COUNT(*)
-   DATOS
-   WHERE DATO > 5
-   GROUP BY DATOS;
-
-
+PODEMOS ES SUMAR LOS VALORES DE UNA FILA 
+SELECT
+FROM
+WHERE
+GROUP BY
