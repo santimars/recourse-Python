@@ -156,3 +156,23 @@ print(d.loc[condicion, lista_columnas])
 # Mostrar todas las columnas (:) que cumplan la condicion
 print ("Columans que cumplen la condicion\t")
 print(d.loc[ d["Humidity"]<= media_humedad, :])
+
+print(d.loc[10:15,["Humidity","Temperature (C)"]])
+
+
+print(d.loc[10]) # esto es equivalente a d.loc[10, : ]
+print(d.loc[10:12]) #esto es equivalente a d.loc[10, 12, :]
+# sirve para hacer condiciones y tambien como una forma de sclising
+
+'''
+iloc : Herrmaienta muy similar a loc
+
+El metodo iloc se utiliza en los DataFrames para seleccionar los elementos en base a su ubicacion.
+A diferencia de loc, con iloc podemos seleccionar filas PERO TAMBIEN COLUMNAS a traves de su indice
+'''
+print(d.iloc[0]) # Primera fila
+print(d.iloc[:,0])# Primera columna
+
+print(d.iloc[0:5]) # Primera cinco filas 
+# Esto seria igual que con el loc
+ 
