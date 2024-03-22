@@ -38,14 +38,26 @@ def AgregarPersonasIniciales():
  p4 = Persona(nombre="andres",apellido="Smith",edad=33,mail="smithandres@mail.com")
  p5 = Persona(nombre="viviana",apellido="Adams",edad=21,mail="viviana21@mail.com")
  p6 = Persona(nombre="Alison",apellido="burgos",edad=12,mail="alison@mail.com")
- db.session.add(p1) # agregando la persona a la session
+ listapersonas = [p1,p2,p3,p4,p5,p6]
+ #db.session.add(listapersonas) # agregando la persona a la session
+ db.session.add_all(listapersonas) # agregando todas las personas de la session
  db.session.commit() # confirmamos que queremos guardarla en la BD
  db.session.close() # Cerramos por que sino esto estalla XD  ---- cada accion te tiene que cerrar -- esto es de buenas practicas
 def ConsultasDePrueba():
  pass
 
 def AgregarPersona():
- pass
+ print("\n Agregar persona")
+
+ nombres= input("Nombre de la persona: ")
+ apellidos=input("Apedillo de la persona: ")
+ edads=int(input("Edad de la persona: "))
+ mails = input("Mail de la Persona: ")
+ p = Persona(nombres,apellidos,edads,mails)
+ db.session.add(p)
+ db.session.commit()
+ db.session.close()
+ print( "Has Agregado a un persona!")
 
 def EditarPersona():
  pass
@@ -55,7 +67,7 @@ def EliminarPersona():
 
 if __name__ == "__main__":
  # Reseteamos la base de datos si existe
- #'db.Base.metadata.drop_all(bind=db.engine, checkfirst = True)'
+ db.Base.metadata.drop_all(bind=db.engine, checkfirst = True)
 
  # En la siguiente Linea estamos indicando a SQLAlchemy que cree, si no existe , las tablas
  # de todos los modelos que encuentre en models.py
@@ -80,13 +92,14 @@ if __name__ == "__main__":
    AgregarPersonasIniciales()
   elif opcion == 2:
    ConsultasDePrueba()
-  elif opcion == 4:
+  elif opcion == 3:
    AgregarPersona() 
-  elif opcion == 5:
+  elif opcion == 4:
    EditarPersona()
-  elif opcion == 6:
+  elif opcion == 5:
    EliminarPersona()   
   elif opcion == 7:
+   print("Haz salido del programa")
    sys.exit(1) #'Fin del programa'
   else:
    print("Opcion no valida") 
