@@ -62,12 +62,33 @@ def AgregarPersona():
 def EditarPersona():
  pass
 
+def VerPersonas():
+ print("\n -----------Ver listado de personas-------------\n")
+ # forma de consultar de forma global nuestra BD
+ #persona = db.session.query(Persona) # ponemos el nombre de la clases que  pusimos en models.py
+ persona = db.session.query(Persona).all() # podremos ver todo
+ while(True):
+  print(
+        "Ver Todo: 1\n"
+        "salir: 2")
+  op = int(input("Elija una opcion: "))
+
+  if op == 1:
+   for i in persona:
+    print("Id:{} Nombre: {}  edad: {} mail: {}".format(i.id_persona,i.nombre,i.edad,i.mail))
+   print("-----------Estas viendo toda la lista--------------") 
+  elif op ==2:
+   print("Haz salido del programa")
+   sys.exit(1) #'Fin del programa'
+  else:
+   print("Dato no valido")  
+
 def EliminarPersona():
  pass
 
 if __name__ == "__main__":
  # Reseteamos la base de datos si existe
- db.Base.metadata.drop_all(bind=db.engine, checkfirst = True)
+ #db.Base.metadata.drop_all(bind=db.engine, checkfirst = True)
 
  # En la siguiente Linea estamos indicando a SQLAlchemy que cree, si no existe , las tablas
  # de todos los modelos que encuentre en models.py
@@ -83,7 +104,7 @@ if __name__ == "__main__":
         "2. Consultas de prueba\n"
         "3. Agregar Persona\n"
         "4. Editar Persona\n"
-        "5. Eliminar Persona"
+        "5. Eliminar Persona\n"
         "6. Ver Persona\n"
         "7. Salir")
 
@@ -98,6 +119,8 @@ if __name__ == "__main__":
    EditarPersona()
   elif opcion == 5:
    EliminarPersona()   
+  elif opcion == 6:
+   VerPersonas() 
   elif opcion == 7:
    print("Haz salido del programa")
    sys.exit(1) #'Fin del programa'
