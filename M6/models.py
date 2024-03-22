@@ -3,6 +3,7 @@ import db
 
 
 class Persona(db.Base):
+    '''Clase persona de models.py'''
     #__tablename__ nombre de la tabla
     __tablename__ = "persona" 
     # va ha ser un diccionario de diferentes claves y valores con informacion de configuracion de esta tabla 
@@ -16,16 +17,15 @@ class Persona(db.Base):
     mail = Column(String,nullable = False) # mail es un str y NO puede estar vacio
 
 
-    def __init__(self, nombre , apellido, edad, mail):
+    def __init__(self, nombre , edad, mail):
         self.nombre = nombre
-        self.apellido = apellido
         self.edad = edad
         self.mail = mail
     
     def __str__(self):
-        return """Persona (Nombre: {} {} 
-                            Edad: {} 
-                            mail: {})""".format(self.nombre,
-                                                self.apellido,
+        return """Persona
+                          > Nombre: {} 
+                          > Edad: {} 
+                          > mail: {}""".format(self.nombre,
                                                 self.edad,
                                                 self.mail)

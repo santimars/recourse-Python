@@ -22,6 +22,15 @@ este es un projecto pequeño y es lo que deberian tener todos los proyectos
 son nombres de convenio donde se llamaran nuestros siguientes projectos futuros
 
 ------------------------------ Aqui en el main hacemos nuesta base de datos
+
+cada ves que comenzemos un projecto sigamos este mismo patron
+creemos las clases
+creamos nuestra base de datos
+crear 
+editar
+visualizar 
+eliminar 
+se van a usa siempre en cualquier projecto
 '''
 
 import db
@@ -32,12 +41,12 @@ import sys
 # hay que probar muchas veces las posibles funciones antes de subirlas al repositorio
 
 def AgregarPersonasIniciales():
- p1 = Persona(nombre="Cristian",apellido="Rodriguez",edad=23,mail="cristian@mail.com")
- p2 = Persona(nombre="samanta",apellido="Gutierrez",edad=34,mail="samanta@mail.com")
- p3 = Persona(nombre="sergio",apellido="Ordonez",edad=56,mail="seordonez@mail.com")
- p4 = Persona(nombre="andres",apellido="Smith",edad=33,mail="smithandres@mail.com")
- p5 = Persona(nombre="viviana",apellido="Adams",edad=21,mail="viviana21@mail.com")
- p6 = Persona(nombre="Alison",apellido="burgos",edad=12,mail="alison@mail.com")
+ p1 = Persona(nombre="Cristian",edad=23,mail="cristian@mail.com")
+ p2 = Persona(nombre="samanta",edad=34,mail="samanta@mail.com")
+ p3 = Persona(nombre="sergio",edad=56,mail="seordonez@mail.com")
+ p4 = Persona(nombre="andres",edad=33,mail="smithandres@mail.com")
+ p5 = Persona(nombre="viviana",edad=21,mail="viviana21@mail.com")
+ p6 = Persona(nombre="Alison",edad=12,mail="alison@mail.com")
  listapersonas = [p1,p2,p3,p4,p5,p6]
  #db.session.add(listapersonas) # agregando la persona a la session
  db.session.add_all(listapersonas) # agregando todas las personas de la session
@@ -50,17 +59,36 @@ def AgregarPersona():
  print("\n Agregar persona")
 
  nombres= input("Nombre de la persona: ")
- apellidos=input("Apedillo de la persona: ")
  edads=int(input("Edad de la persona: "))
  mails = input("Mail de la Persona: ")
- p = Persona(nombres,apellidos,edads,mails)
+ p = Persona(nombres,edads,mails)
  db.session.add(p)
  db.session.commit()
  db.session.close()
  print( "Has Agregado a un persona!")
 
 def EditarPersona():
- pass
+ personas = db.session.query(Persona).all() # filtramos lo que deseamos ver
+ for i in personas:
+    print("""> ID:{} 
+             > Nombre: {}  
+             > Edad: {}
+             > Mail: {}""".format(i.id_persona,i.nombre,i.edad,i.mail))
+ 
+ persona_id = int(input("\t----- ID de la persona que quieres editar: "))
+ person = db.session.query(Persona).filter(Persona.id_persona == persona_id).first()
+ # El metodo first nos ayuda a que si encuentra mas de una conincidencia nos envia el primer valor  
+ # filtramos lo que deseamos ver
+ if person is None:
+      print("La persona no existe")
+ else:
+  print(person)
+  edad_nueva = int(input("Introduce la nueva edad: "))
+  person.edad = edad_nueva
+  db.session.commit()
+  db.session.close()
+  print("Persona Actualizada")
+ 
 
 def VerPersonas():
  print("\n -----------Ver listado de personas-------------\n")
@@ -81,10 +109,29 @@ def VerPersonas():
    print("Haz salido del programa")
    sys.exit(1) #'Fin del programa'
   else:
-   print("Dato no valido")  
+   print("Dato no valido\n por favor ingresar otras vez")  
 
 def EliminarPersona():
- pass
+ personas = db.session.query(Persona).all() # filtramos lo que deseamos ver
+ for i in personas:
+    print("""> ID:{} 
+             > Nombre: {}  
+             > Edad: {}
+             > Mail: {}""".format(i.id_persona,i.nombre,i.edad,i.mail))
+ 
+ persona_id = int(input("\t----- ID de la persona que quieres Borrar: "))
+ person = db.session.query(Persona).filter(Persona.id_persona == persona_id).first()
+ # El metodo first nos ayuda a que si encuentra mas de una conincidencia nos envia el primer valor  
+ # filtramos lo que deseamos ver
+ if person is None:
+      print("La persona no existe")
+ else:
+  print(person)
+  db.session.delete(person) # borramos los datos de esta persona
+  db.session.commit()
+  db.session.close()
+  print("Persona Borrada")
+ 
 
 if __name__ == "__main__":
  # Reseteamos la base de datos si existe
