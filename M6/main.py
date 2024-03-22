@@ -22,7 +22,3 @@ este es un projecto pequeño y es lo que deberian tener todos los proyectos
 son nombres de convenio donde se llamaran nuestros siguientes projectos futuros
 
 '''
-class Persona():
-    def __init__(self, nombre , apellido, edad, mail):
-        self.nombre = nombre
-        self.apellido = apellido
