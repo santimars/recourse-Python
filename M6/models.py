@@ -3,7 +3,7 @@ import db
 
 
 class Persona(db.Base):
-    #__tablename nombre de la tabla
+    #__tablename__ nombre de la tabla
     __tablename__ = "persona" 
     # va ha ser un diccionario de diferentes claves y valores con informacion de configuracion de esta tabla 
     # le pones una columna que identifique e incremente
@@ -29,4 +29,3 @@ class Persona(db.Base):
                                                 self.apellido,
                                                 self.edad,
                                                 self.mail)
-    

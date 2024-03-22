@@ -19,7 +19,7 @@ engine = create_engine("sqlite:///database/personas.db") # engine le dice en que
 
 # Ahora creamos la seccion lo que nos permite realizar transacciones (operaciones) dentro de nuesta bd
 Session = sessionmaker(bind=engine)  # esto crea una clase especial que es la session
-session = Session()
+session = Session()# cuando realizamos cambios en la bd, debemos hacerlo atraves de seccion
 
 # Ahora vamos al fichero models.py en en los modelos (clases)donde queremos que se transformen en tablas, 
 # le añadiremos esta variable y esto se encargara de mapear y vincular cada clase a cada tabla
