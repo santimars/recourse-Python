@@ -36,6 +36,8 @@ se van a usa siempre en cualquier projecto
 import db
 from models import Persona
 import sys
+from sqlalchemy import and_, or_, text
+
 
 #hacer esto nos permite hacer pruebas de forma muy rapida
 # hay que probar muchas veces las posibles funciones antes de subirlas al repositorio
@@ -52,9 +54,73 @@ def AgregarPersonasIniciales():
  db.session.add_all(listapersonas) # agregando todas las personas de la session
  db.session.commit() # confirmamos que queremos guardarla en la BD
  db.session.close() # Cerramos por que sino esto estalla XD  ---- cada accion te tiene que cerrar -- esto es de buenas practicas
-def ConsultasDePrueba():
- pass
 
+def ConsultasDePrueba():
+ print("\n #1. Obtener un objeto a partir de su ID (su primary key). Si no lo encuentra nos devuelve None")
+ #result = db.session.query(Persona).get(3) # version obsoleta
+ # la mayoria de las operaciones de una base de datos es localizar un objeto
+ 
+ result = db.session.get(Persona, 3)
+ print(result)
+
+ print("\n #2. Obtener tosos los objetos de una tabla")
+ result = db.session.query(Persona).all()
+ for i in result:
+  print("Nombre: {} -> Edad: {} -> mail: {}".format(i.nombre,i.edad,i.mail))
+ 
+ print("\n #3.Obtener el primer objeto de una consulta (el mas antiguo)  ")
+ result = db.session.query(Persona).first()
+ print(result)
+
+ print("\n #4. Contar el numero de elementos devueltos por una consulta")
+ result = db.session.query(Persona).count()
+ print("El numero de personas registradas es: {} ".format(result))
+ 
+ print("\n #5. Ordenar el resultado de una consulta ")
+ result = db.session.query(Persona).order_by("nombre").all()
+ for i in result:
+  print(i)
+
+ print("\n #6. Ordenar el resultado de una cosulta y mostrar los primeros 3 resultados: ")
+ result = db.session.query(Persona).order_by("nombre").limit(3)
+ for i in result:
+  print(i)
+ 
+ print(" #7. Aplicar filtros a una consulta con filter")
+ result = db.session.query(Persona).filter(Persona.edad > 18).all()
+ for i in result:
+  print(i)
+ # podemos concatenar toda esta informacion de la siguiente manera
+ print(" #.8 Aplicar un filtro donde me muestre las personas mayores de 18 ademas que los ordene por nombre y ademas solo sean los 3 primeros")
+ result = db.session.query(Persona).filter(Persona.edad > 18).order_by("nombre").limit(3)
+ for i in result:
+  print(i)
+
+  print("# 9. Aplicar el filtro ilike que nos permite buscar patrones")
+  result = db.session.query(Persona).filter(Persona.nombre.ilike("Sa%")).all()# le decimos que queremos todos lo valores que empiezen con Sa y % significa todo los valores
+ for i in result:
+  print(i)
+
+ print(" #10. Aplicar el filtro in_")
+ result = db.session.query(Persona).filter(Persona.id_persona.in_([1,2,6])).all()
+ #result = db.session.query(Persona).filter(Persona.nombre.in_(["Cristian","Eva"])).all()
+ for i in result:
+  print(i)
+ print(" #11. Aplicar el filtro and_")
+ c1 = Persona.id_persona >20
+ c2 = Persona.nombre.ilike("%D%")
+ result = db.session.query(Persona).filter(and_ (c1, c2)).all()
+ for i in result:
+  print(i)
+ 
+ print(" #12. Ejecutar instrucciones SQL explicitas")
+ 
+ result = db.session.query(Persona).from_statement(text("SELECT * FROM persona")).all()
+ for i in result:
+  print(i)
+ 
+  
+   
 def AgregarPersona():
  print("\n Agregar persona")
 
@@ -66,6 +132,7 @@ def AgregarPersona():
  db.session.commit()
  db.session.close()
  print( "Has Agregado a un persona!")
+
 
 def EditarPersona():
  personas = db.session.query(Persona).all() # filtramos lo que deseamos ver
@@ -111,6 +178,7 @@ def VerPersonas():
   else:
    print("Dato no valido\n por favor ingresar otras vez")  
 
+
 def EliminarPersona():
  personas = db.session.query(Persona).all() # filtramos lo que deseamos ver
  for i in personas:
@@ -132,7 +200,7 @@ def EliminarPersona():
   db.session.close()
   print("Persona Borrada")
  
-
+# if __name__ = "__main__": es el incio  para conectar nuestra base de datos
 if __name__ == "__main__":
  # Reseteamos la base de datos si existe
  #db.Base.metadata.drop_all(bind=db.engine, checkfirst = True)
