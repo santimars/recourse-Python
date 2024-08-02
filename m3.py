@@ -672,7 +672,7 @@ class Ejemplo:
          self.metodo_privado= nuevo_atributo
 # Programa principal (fuera de la clase Ejemplo)
 e = Ejemplo()
-print(e.__atributo_privado)
+#print(e.__atributo_privado)
 '''
 Como se ve,  hemos asignado el nombre ver_valor al getter de la variable atributo_privado. Ha funcionado, pero ahora
 nesecitamos recordar dos nombres de variable para poder acceder a una ... Por eso se utiliza el mismo nombre.
@@ -1067,3 +1067,10 @@ print(isinstance(e1,Persona))
 print(isinstance(e1,Empleado))
 
 #terminamos modulo 3 
+
+b= int(input("Escriba una valor para base"))
+a =int(input("Escriba un valor para altura"))
+print("Su perimetro es",p=b*a)
+
+
+
